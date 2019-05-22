@@ -26,6 +26,17 @@ def api_v1_char_summary():
         abort(400)
 
 
+@app.route('/api/v1/wordSummary', methods=['GET', 'PUT', 'POST', 'DELETE'])
+def api_v1_word_summary():
+    if request.method == 'GET':
+        path = os.path.abspath(os.path.join(STATIC_PATH, 'data/word_summary.json'))
+        with open(path, 'r+', encoding='utf-8') as f:
+            data = json.load(f)
+        return jsonify(data)
+    else:
+        abort(400)
+
+
 @app.route('/api/v1/seasonSummary', methods=['GET', 'PUT', 'POST', 'DELETE'])
 def api_v1_season_summary():
     if request.method == 'GET':
@@ -64,6 +75,50 @@ def api_v1_color_summary():
     if request.method == 'GET':
         color_path = os.path.abspath(os.path.join(STATIC_PATH, 'data/color.json'))
         with open(color_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return jsonify(data)
+    else:
+        abort(400)
+
+
+@app.route('/api/v1/personNetwork', methods=['GET', 'PUT', 'POST', 'DELETE'])
+def api_v1_person_network():
+    if request.method == 'GET':
+        network_path = os.path.abspath(os.path.join(STATIC_PATH, 'data/network/person.json'))
+        with open(network_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return jsonify(data)
+    else:
+        abort(400)
+
+
+@app.route('/api/v1/locationNetwork', methods=['GET', 'PUT', 'POST', 'DELETE'])
+def api_v1_location_network():
+    if request.method == 'GET':
+        network_path = os.path.abspath(os.path.join(STATIC_PATH, 'data/network/location.json'))
+        with open(network_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return jsonify(data)
+    else:
+        abort(400)
+
+
+@app.route('/api/v1/impactLocation', methods=['GET', 'PUT', 'POST', 'DELETE'])
+def api_v1_impact_location():
+    if request.method == 'GET':
+        path = os.path.abspath(os.path.join(STATIC_PATH, 'data/impact/locations.json'))
+        with open(path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return jsonify(data)
+    else:
+        abort(400)
+
+
+@app.route('/api/v1/impactPerson', methods=['GET', 'PUT', 'POST', 'DELETE'])
+def api_v1_impact_person():
+    if request.method == 'GET':
+        path = os.path.abspath(os.path.join(STATIC_PATH, 'data/impact/persons.json'))
+        with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
         return jsonify(data)
     else:
