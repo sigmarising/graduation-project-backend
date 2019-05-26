@@ -125,6 +125,17 @@ def api_v1_impact_person():
         abort(400)
 
 
+@app.route('/api/v1/threeMan', methods=['GET', 'PUT', 'POST', 'DELETE'])
+def api_v1_three_man():
+    if request.method == 'GET':
+        path = os.path.abspath(os.path.join(STATIC_PATH, 'data/threeMan.json'))
+        with open(path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return jsonify(data)
+    else:
+        abort(400)
+
+
 if __name__ == '__main__':
     print(STATIC_PATH)
     app.run(debug=settings.DEBUG)
